@@ -2,7 +2,9 @@ package com.example.clinica_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText txtcorreo,txtclave;
     Button btnIngresar;
     String rol="";
+    String correo;
+    String clave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtclave=(EditText) findViewById(R.id.edtPassword);
         btnIngresar=(Button)findViewById(R.id.btnLogin);
         btnIngresar.setOnClickListener(this);
+        RecuperarDatos();
+
 
 
 
@@ -40,8 +46,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
+
+
         if(id == R.id.btnLogin) {
-            ValidarUser("http://192.168.10.104/clinica_service/admin/validarAdmin.php");
+            correo=txtcorreo.getText().toString();
+            clave=txtclave.getText().toString();
+            if(!correo.isEmpty() && !clave.isEmpty()){
+            ValidarUser("http://192.168.10.104/clinica_service/paciente/validarPaciente.php");
+            }
+            else{
+                Toast.makeText(MainActivity.this,"No dejes campos vacios",Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
@@ -52,8 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(String response) {
                 if(!response.isEmpty()) {
 
-                        Intent intent = new Intent(getApplicationContext(), MenuAdmin.class);
+                        GuardarDatos();
+                        Intent intent = new Intent(getApplicationContext(), MenuPaciente.class);
                         startActivity(intent);
+                        finish();
 
 
                 }else{
@@ -65,20 +82,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Error al tratar de conectar",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, error.toString(),Toast.LENGTH_SHORT).show();
 
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> param= new HashMap<String, String>();
-                param.put("correo",txtcorreo.getText().toString());
-                param.put("clave",txtclave.getText().toString());
+                param.put("correo",correo);
+                param.put("clave",clave);
                // param.put("rol",rol);
                 return param;
             }
         };
         RequestQueue requestQueue= Volley.newRequestQueue(this);
          requestQueue.add(stringRequest);
+    }
+
+    public void GuardarDatos(){
+        SharedPreferences  preferences= getSharedPreferences("datosLogin" , Context.MODE_PRIVATE);//Nombre de donde se guerdarán los datos
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("correo",correo);
+        editor.putString("clave",clave);
+        editor.putBoolean("sesion",true);//Guardar sesion en caso de que esta sea correcta
+        editor.commit();
+
+
+    }
+    public void RecuperarDatos(){
+        SharedPreferences  preferences= getSharedPreferences("datosLogin", Context.MODE_PRIVATE);//Nombre de donde se guerdarán los datos
+        txtcorreo.setText(preferences.getString("correo",""));//Si no hay preferencia se guarda un correo provisional por defecto
+        txtclave.setText(preferences.getString("clave",""));//Si no hay preferencia se guarda un correo provisional por defecto
+
     }
 }
