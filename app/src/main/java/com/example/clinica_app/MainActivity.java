@@ -24,8 +24,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText txtcorreo,txtclave;
+<<<<<<< HEAD
     Button btnIngresar;
     Button btnRegN;
+=======
+    Button btnIngresar,btnRecuperar;
+>>>>>>> master
     String rol="";
     String correo;
     String clave;
@@ -38,10 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnIngresar=(Button)findViewById(R.id.btnLogin);
         btnRegN=(Button)findViewById(R.id.btnRegisN);
         btnIngresar.setOnClickListener(this);
+<<<<<<< HEAD
         btnRegN.setOnClickListener(this);
+=======
+        btnRecuperar=(Button)findViewById(R.id.btn_pass);
+        btnRecuperar.setOnClickListener(this);
+>>>>>>> master
         RecuperarDatos();
-
-
 
 
     }
@@ -49,13 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
+        if(id == R.id.btn_pass){
+            Intent intent = new Intent(getApplicationContext(), validarMail.class);
+            startActivity(intent);
+        }
 
         if(id == R.id.btnLogin) {
             correo=txtcorreo.getText().toString();
             clave=txtclave.getText().toString();
             if(!correo.isEmpty() && !clave.isEmpty()){
-            ValidarUser("http://192.168.10.104/clinica_service/paciente/validarPaciente.php");
+            ValidarUser("http://192.168.0.21/clinica_service/paciente/validarPaciente.php");
             }
             else{
                 Toast.makeText(MainActivity.this,"No dejes campos vacios",Toast.LENGTH_SHORT).show();
