@@ -25,6 +25,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText txtcorreo,txtclave;
     Button btnIngresar;
+    Button btnRegN;
     String rol="";
     String correo;
     String clave;
@@ -32,10 +33,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtcorreo=(EditText) findViewById(R.id.edtCorreo);
-        txtclave=(EditText) findViewById(R.id.edtPassword);
+        txtcorreo=(EditText) findViewById(R.id.edtNombre);
+        txtclave=(EditText) findViewById(R.id.edtApellido);
         btnIngresar=(Button)findViewById(R.id.btnLogin);
+        btnRegN=(Button)findViewById(R.id.btnRegisN);
         btnIngresar.setOnClickListener(this);
+        btnRegN.setOnClickListener(this);
         RecuperarDatos();
 
 
@@ -57,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else{
                 Toast.makeText(MainActivity.this,"No dejes campos vacios",Toast.LENGTH_SHORT).show();
             }
+        }
+        else if(id==R.id.btnRegisN){
+            Intent intent= new Intent(getApplicationContext(),RegistroPaciente.class);
+            startActivity(intent);
+            finish();
         }
 
     }

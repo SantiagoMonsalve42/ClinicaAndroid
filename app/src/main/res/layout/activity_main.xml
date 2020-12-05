@@ -27,7 +27,7 @@
                 tools:srcCompat="@drawable/icon_user" />
 
             <EditText
-                android:id="@+id/edtCorreo"
+                android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -40,7 +40,7 @@
                 android:paddingLeft="5dp" />
 
             <EditText
-                android:id="@+id/edtPassword"
+                android:id="@+id/edtApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -64,6 +64,20 @@
                 android:text="Iniciar Sesión"
                 android:textColor="#FFF"
                 android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnRegisN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
+                android:background="#AD1976D2"
+                android:text="Registrate"
+                android:textColor="#FFF"
+                android:textSize="18sp" />
+
+
 
         </LinearLayout>
     </FrameLayout>
