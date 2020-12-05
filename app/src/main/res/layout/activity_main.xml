@@ -65,6 +65,12 @@
                 android:textColor="#FFF"
                 android:textSize="18sp" />
 
+            <Button
+                android:id="@+id/btn_pass"
+                android:layout_width="294dp"
+                android:layout_height="53dp"
+                android:text="¿Olvidó su contraseña?" />
+
         </LinearLayout>
     </FrameLayout>
 

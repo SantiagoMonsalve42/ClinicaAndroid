@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clinica_APP"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".UpdateAsk"></activity>
+        <activity android:name=".checkAsk" />
+        <activity android:name=".validarMail" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".MenuPaciente" />
         <activity android:name=".MenuAdmin" />
         <activity android:name=".Presentacion">
