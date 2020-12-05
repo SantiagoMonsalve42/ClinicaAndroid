@@ -64,27 +64,29 @@
                 android:text="Iniciar Sesión"
                 android:textColor="#FFF"
                 android:textSize="18sp" />
-
             <Button
-<<<<<<< HEAD
                 android:id="@+id/btnRegisN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="15dp"
-                android:background="#AD1976D2"
+                android:background="#1976d2"
                 android:text="Registrate"
                 android:textColor="#FFF"
                 android:textSize="18sp" />
 
-
-=======
+            <Button
                 android:id="@+id/btn_pass"
-                android:layout_width="294dp"
-                android:layout_height="53dp"
-                android:text="¿Olvidó su contraseña?" />
->>>>>>> master
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
+                android:background="#1976d2"
+                android:text="Olvisate tu clave?"
+                android:textColor="#FFF"
+                android:textSize="10sp" />
 
         </LinearLayout>
     </FrameLayout>

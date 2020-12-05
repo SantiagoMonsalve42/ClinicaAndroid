@@ -24,12 +24,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText txtcorreo,txtclave;
-<<<<<<< HEAD
+
     Button btnIngresar;
     Button btnRegN;
-=======
-    Button btnIngresar,btnRecuperar;
->>>>>>> master
+    Button btnRecuperar;
+
     String rol="";
     String correo;
     String clave;
@@ -42,12 +41,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnIngresar=(Button)findViewById(R.id.btnLogin);
         btnRegN=(Button)findViewById(R.id.btnRegisN);
         btnIngresar.setOnClickListener(this);
-<<<<<<< HEAD
+
         btnRegN.setOnClickListener(this);
-=======
+
         btnRecuperar=(Button)findViewById(R.id.btn_pass);
         btnRecuperar.setOnClickListener(this);
->>>>>>> master
+
         RecuperarDatos();
 
 
