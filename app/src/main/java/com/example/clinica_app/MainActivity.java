@@ -1,8 +1,9 @@
 package com.example.clinica_app;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +17,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnIngresar;
     Button btnRegN;
     Button btnRecuperar;
-
-    String rol="";
+    RequestQueue requestQueue;
     String correo;
     String clave;
     @Override
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             correo=txtcorreo.getText().toString();
             clave=txtclave.getText().toString();
             if(!correo.isEmpty() && !clave.isEmpty()){
-            ValidarUser("http://192.168.0.21/clinica_service/paciente/validarPaciente.php");
+            ValidarUser("http://192.168.0.21/clinica_service/login/verificar.php");
             }
             else{
                 Toast.makeText(MainActivity.this,"No dejes campos vacios",Toast.LENGTH_SHORT).show();
@@ -78,44 +82,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void ValidarUser(String URL){
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(!response.isEmpty()) {
+    private void ValidarUser(String URL){
+        //Validar que no dejar datos en blanco
 
-                        GuardarDatos();
-                        Intent intent = new Intent(getApplicationContext(), MenuPaciente.class);
-                        startActivity(intent);
-                        finish();
+            StringRequest stringRequest=
+                    new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            String op= response.toString();
+                            redireccionar(op);
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    }){
+                        @Override
+                        protected Map<String,String>getParams() throws AuthFailureError{
+                            Map<String,String> parametros= new HashMap<String, String>();
+                            parametros.put("correo",txtcorreo.getText().toString());
+                            parametros.put("clave",txtclave.getText().toString());
+                            return parametros;
+                        }
+                    };
+            requestQueue= Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+        }
 
 
-                }else{
-                    Toast.makeText(MainActivity.this, "Usuario o clave incorrectas",Toast.LENGTH_SHORT).show();
-                }
-
-
+    public void redireccionar(String op){
+        try{
+            String opcion=op.trim();
+            int ops=Integer.parseInt(opcion);
+            Intent intent;
+            switch (ops){
+                case 0:
+                    AlertDialog.Builder alerta= new AlertDialog.Builder(MainActivity.this);//Mensaje en cuadro de texto en alerta
+                    alerta.setMessage("Correo o contraseña invalida..")
+                            .setCancelable(false)//Paara salir del aleert pulsando fuera de el
+                            .setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog titulo= alerta.create();
+                    titulo.setTitle("Error al iniciar sesión");
+                    titulo.show();
+                    break;
+                case 1:
+                    intent= new Intent(getApplicationContext(),MenuAdmin.class);
+                    GuardarDatos();
+                    startActivity(intent);
+                    break;
+                case 2:
+                    intent= new Intent(getApplicationContext(),MenuMedico.class);
+                    GuardarDatos();
+                    startActivity(intent);
+                    break;
+                case 3:
+                    intent= new Intent(getApplicationContext(),MenuPaciente.class);
+                    GuardarDatos();
+                    startActivity(intent);
+                    break;
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.toString(),Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            System.out.println("error"+e.getMessage());
+        }
 
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> param= new HashMap<String, String>();
-                param.put("correo",correo);
-                param.put("clave",clave);
-               // param.put("rol",rol);
-                return param;
-            }
-        };
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-         requestQueue.add(stringRequest);
+
     }
-
     public void GuardarDatos(){
         SharedPreferences  preferences= getSharedPreferences("datosLogin" , Context.MODE_PRIVATE);//Nombre de donde se guerdarán los datos
         SharedPreferences.Editor editor = preferences.edit();

@@ -63,7 +63,7 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
             MostrarFecha();
         }
         if(id == R.id.btnReg) {
-                RegistarUser("http://192.168.10.104/clinica_service/paciente/create.php");
+                RegistarUser("http://192.168.0.21/clinica_service/paciente/create.php");
         }
     }
 

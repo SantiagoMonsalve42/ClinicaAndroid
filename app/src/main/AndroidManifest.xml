@@ -12,13 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clinica_APP"
         android:usesCleartextTraffic="true">
-<<<<<<< HEAD
-        <activity android:name=".RegistroPaciente"></activity>
-=======
-        <activity android:name=".UpdateAsk"></activity>
+        <activity android:name=".MenuMedico"></activity>
+        <activity android:name=".RegistroPaciente" />
+        <activity android:name=".UpdateAsk" />
         <activity android:name=".checkAsk" />
         <activity android:name=".validarMail" />
->>>>>>> master
         <activity android:name=".MainActivity" />
         <activity android:name=".MenuPaciente" />
         <activity android:name=".MenuAdmin" />
