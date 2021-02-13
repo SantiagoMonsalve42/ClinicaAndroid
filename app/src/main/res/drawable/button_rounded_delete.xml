@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners tools:ignore="StateListReachable" android:radius="16dp"/>
+    <stroke android:color="#C73E3E" android:width="2dp"/>
+</shape>
