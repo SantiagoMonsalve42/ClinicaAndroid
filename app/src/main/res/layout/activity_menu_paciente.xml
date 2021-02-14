@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical">
 
@@ -28,78 +28,45 @@
             android:id="@+id/textViewNombreP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="25sp" />
-
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView9"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Citas agendadas:"
-            android:textSize="30sp" />
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/textViewEspecialidadP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="25sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewDoctorP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="25sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewFechaP"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/textViewHoraP"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="25sp" />
-        </LinearLayout>
-
+                <TextView
+                    android:id="@+id/textViewDatosCitaP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
@@ -130,37 +97,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="80dp"
+        android:layout_marginRight="25dp"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded_upgrade"
+            android:text="Actualizar datos"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/buttonCancelarP"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_delete"
             android:text="Cancelar cita"
-            android:textSize="23sp"/>
+            android:textSize="23sp" />
+
     </LinearLayout>
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/btnSalirPa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="65dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="65dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnSalirPa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_rounded"
-            android:text="Cerrar Sesión"
-            android:textColor="#FFF"
-            android:textSize="22sp" />
-    </LinearLayout>
+        android:background="@drawable/button_rounded"
+        android:text="Cerrar Sesión"
+        android:textColor="#FFF"
+        android:textSize="22sp" />
 
 </LinearLayout>
