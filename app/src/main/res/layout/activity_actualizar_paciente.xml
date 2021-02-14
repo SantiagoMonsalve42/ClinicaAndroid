@@ -18,7 +18,7 @@
         android:text="Actaulizar datos personales" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextActualNombreP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -27,10 +27,12 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nombre" />
+        android:text="Nombre"
+        tools:targetApi="lollipop"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextActualApellidoP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -39,10 +41,11 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Apellido" />
+        android:text="Apellido"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editTextActualClaveP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -51,10 +54,11 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Clave" />
+        android:text="Clave"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editTextActualPreguntaP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -63,10 +67,11 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Pregunta de recuperación" />
+        android:text="Pregunta de recuperación"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editTextActualRespuestaP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -75,10 +80,11 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Respuesta" />
+        android:text="Respuesta"
+        android:autofillHints="" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonActualDatosP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"

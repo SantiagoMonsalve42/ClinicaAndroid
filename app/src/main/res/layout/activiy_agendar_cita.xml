@@ -169,24 +169,26 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/editTextDateP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="date"
+            android:autofillHints="" />
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@+id/editTextTimeP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="time"
+            android:autofillHints="" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAgendarCitaP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
