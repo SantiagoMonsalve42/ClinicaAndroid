@@ -11,12 +11,15 @@ import android.widget.Button;
 
 public class MenuPaciente extends AppCompatActivity implements View.OnClickListener {
     Button btnSalir;
+    Button btnAgendarC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_paciente);
         btnSalir= (Button)findViewById(R.id.btnSalirPa);
+        btnAgendarC= (Button)findViewById(R.id.btnAgendarP);
         btnSalir.setOnClickListener(this);
+        btnAgendarC.setOnClickListener(this);
     }
 
     @Override
@@ -25,6 +28,12 @@ public class MenuPaciente extends AppCompatActivity implements View.OnClickListe
             SharedPreferences preferences=getSharedPreferences("datosLogin", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(v.getId()==R.id.btnAgendarP){
+
+            Intent intent = new Intent(getApplicationContext(),AgendarCitaPac.class);
             startActivity(intent);
             finish();
         }

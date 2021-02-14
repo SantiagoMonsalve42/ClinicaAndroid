@@ -15,8 +15,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="25dp"
         android:gravity="center"
-        android:textSize="25sp"
-        android:text="Registro pacientes" />
+        android:text="Registro pacientes"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/edtNombre"
@@ -68,7 +68,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/editTextDateFechaN"
+        android:id="@+id/edtFechaN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -112,7 +112,8 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:hint="Pregunta de recuperación"
-        android:inputType="textLongMessage" />
+        android:inputType="textLongMessage"
+        android:translationY="-70px" />
 
     <EditText
         android:id="@+id/edtRespuesta"
@@ -124,7 +125,18 @@
         android:backgroundTint="@android:color/darker_gray"
         android:ems="10"
         android:hint="Respuesta"
-        android:inputType="textLongMessage" />
+        android:inputType="textLongMessage"
+        android:translationY="-70px" />
+
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/button_rounded"
+        android:text="Registrarse"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        android:translationY="-70px" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,14 +146,6 @@
         android:layout_marginRight="90dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnReg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/button_rounded"
-            android:text="Registrarse"
-            android:textColor="#FFF"
-            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

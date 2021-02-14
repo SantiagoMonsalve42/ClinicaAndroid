@@ -56,7 +56,9 @@ public class UpdateAsk extends AppCompatActivity implements View.OnClickListener
     }
 
     private void updatePass(String id, String pass) {
-        String URL="http://192.168.0.21/clinica_service/paciente/updatepass.php";
+        String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/updatepass.php";//WEB
+        //String URL="http://c192.168.0.12/clinica_service/paciente/updatepass.php";Local
+
         StringRequest stringRequest=
                 new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override

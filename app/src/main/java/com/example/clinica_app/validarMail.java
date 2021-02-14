@@ -59,8 +59,11 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
     }
     public void ValidarMail(String mail){
 
-     String URL="http://192.168.0.21/clinica_service/paciente/read.php?id="+mail;
-        JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
+     String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?id="+mail;//WEB
+     //String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;     Local
+     JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
+
+
                 Request.Method.GET, URL, null,
                 response -> {
                     String ask, mail1;
@@ -82,7 +85,7 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
 
                     }
                     startActivity(intent);
-                }, error -> System.out.println("ERRRRRRROR11")
+                }, error -> System.out.println("ERRRRRRROR")
         );
         requestQueue.add(jsonObjectRequest);
 

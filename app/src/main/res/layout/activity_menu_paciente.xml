@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout0"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".MenuPaciente">
+    tools:context=".MenuPaciente"
+    app:layout_constraintBottom_toTopOf="@+id/layout1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +15,10 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="45dp"
         android:layout_marginRight="25dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+       >
+
 
         <TextView
             android:id="@+id/textViewBienvenidoP"
@@ -34,12 +39,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="45dp"
         android:layout_marginRight="25dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+       >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -63,6 +70,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -71,7 +79,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonAgendarP"
+            android:id="@+id/btnAgendarP"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -85,7 +93,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/buttonActualizarP"
+            android:id="@+id/btnActualizarP"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -95,6 +103,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -103,7 +112,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonActualDatosPa"
+            android:id="@+id/btnActualDatosPa"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -117,7 +126,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/buttonCancelarP"
+            android:id="@+id/btnCancelarP"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"

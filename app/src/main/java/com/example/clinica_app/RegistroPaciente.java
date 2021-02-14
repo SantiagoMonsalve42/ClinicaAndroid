@@ -44,15 +44,8 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
         txtresp=(EditText) findViewById(R.id.edtRespuesta);
         txtfechaN = (EditText) findViewById(R.id.edtFechaN);
         txtfechaN.setOnClickListener(this);
-
-
-
         btnIngresar=(Button)findViewById(R.id.btnReg);
         btnIngresar.setOnClickListener(this);
-
-
-
-
 
     }
 
@@ -63,7 +56,8 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
             MostrarFecha();
         }
         if(id == R.id.btnReg) {
-                RegistarUser("http://192.168.0.21/clinica_service/paciente/create.php");
+            //RegistarUser("http://192.168.0.12/clinica_service/paciente/create.php");Local
+            RegistarUser("https://clinica-service.000webhostapp.com/clinica_service/paciente/create.php"); //Web
         }
     }
 

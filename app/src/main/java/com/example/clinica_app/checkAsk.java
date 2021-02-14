@@ -58,9 +58,10 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
 
     private void ValidarRespuesta(String mail,String answer) {
 
-        String URL="http://192.168.0.21/clinica_service/paciente/read.php?id="+mail;
+        String URL="https://clinica_service/paciente/read.php?id="+mail; //WEB
+       // String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;//local
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
-                Request.Method.GET, URL, null,
+                Request.Method.POST, URL, null,
                 response -> {
                     String ans, ids;
 
