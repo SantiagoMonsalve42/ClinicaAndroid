@@ -94,5 +94,4 @@
         android:textSize="20sp"
         android:text="Actualizar" />
 
-
 </LinearLayout>
