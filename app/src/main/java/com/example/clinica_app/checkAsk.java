@@ -17,8 +17,6 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 public class checkAsk extends AppCompatActivity implements View.OnClickListener {
     EditText txt_answer;
     String mail,ask;
@@ -61,7 +59,7 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
         String URL="https://clinica_service/paciente/read.php?id="+mail; //WEB
        // String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;//local
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
-                Request.Method.POST, URL, null,
+                Request.Method.GET, URL, null,
                 response -> {
                     String ans, ids;
 
@@ -73,7 +71,7 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
                         System.out.println(ans);
                         System.out.println(ids);
                         if(answer.equalsIgnoreCase(ans)) {
-                            Intent intent = new Intent(getApplicationContext(), UpdateAsk.class);
+                            Intent intent = new Intent(getApplicationContext(), UpdatePass.class);
                             Bundle miBundle= new Bundle();
 
                             miBundle.putString("id",ids);

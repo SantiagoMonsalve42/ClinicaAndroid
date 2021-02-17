@@ -30,7 +30,15 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textViewNombreP"
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/txtId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,12 +49,11 @@
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="82dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="25dp"
-        android:orientation="vertical"
-       >
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
