@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MenuMedico"></activity>
+        <activity android:name=".AsignarCitaPac"></activity>
+        <activity android:name=".MenuMedico" />
         <activity android:name=".RegistroPaciente" />
-        <activity android:name=".UpdateAsk" />
+        <activity android:name=".UpdatePass" />
         <activity android:name=".checkAsk" />
         <activity android:name=".validarMail" />
         <activity android:name=".MainActivity" />

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RequestQueue requestQueue;
     String correo;
     String clave;
+    DatosPaciente datPac= new DatosPaciente();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onResponse(String response) {
                             String op= response.toString();
+
                             redireccionar(op);
                         }
                     }, new Response.ErrorListener() {
@@ -143,7 +147,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                     break;
                 case 3:
+
+
+                    String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/datosSesion.php";
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                            URL, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            JSONArray jsonArray = response.optJSONArray("paciente");
+                            JSONObject jsonObject= null;
+
+                            try {
+
+                               jsonObject= jsonArray.getJSONObject(0);
+                               datPac.setNombre(jsonObject.optString("nombre"));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    requestQueue.add(jsonObjectRequest);
                     intent= new Intent(getApplicationContext(),MenuPaciente.class);
+                    intent.putExtra(MenuPaciente.nombrePac, datPac.getNombre());
                     GuardarDatos();
                     startActivity(intent);
                     break;

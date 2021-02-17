@@ -22,7 +22,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateAsk extends AppCompatActivity implements View.OnClickListener {
+public class UpdatePass extends AppCompatActivity implements View.OnClickListener {
     String id_p,pass;
     EditText txt_pass;
     Button update;
@@ -45,7 +45,7 @@ public class UpdateAsk extends AppCompatActivity implements View.OnClickListener
         int id =v.getId();
         if(id == R.id.btn_update){
             if(txt_pass.getText().equals("")){
-                Toast.makeText(UpdateAsk.this,"No dejes campos vacios..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdatePass.this,"No dejes campos vacios..",Toast.LENGTH_SHORT).show();
             }else{
                 pass=txt_pass.getText().toString();
                 updatePass(id_p,pass);
@@ -60,11 +60,11 @@ public class UpdateAsk extends AppCompatActivity implements View.OnClickListener
         //String URL="http://c192.168.0.12/clinica_service/paciente/updatepass.php";Local
 
         StringRequest stringRequest=
-                new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "BIEN", Toast.LENGTH_SHORT);
-                        AlertDialog.Builder alerta= new AlertDialog.Builder(UpdateAsk.this);//Mensaje en cuadro de texto en alerta
+                        AlertDialog.Builder alerta= new AlertDialog.Builder(UpdatePass.this);//Mensaje en cuadro de texto en alerta
                         alerta.setMessage("Contraseña actualizada correctamente")
                                 .setCancelable(false)//Paara salir del aleert pulsando fuera de el
                                 .setPositiveButton("Vale", new DialogInterface.OnClickListener() {

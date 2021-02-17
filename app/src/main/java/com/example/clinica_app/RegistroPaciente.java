@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,9 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
     EditText txtnombre,txtapellido,txtcorreo,txtclave,txtcc,txttelefono,txtpreg,txtresp;
     EditText txtfechaN;
     Button btnIngresar;
+    Button btnfechaN;
+    int dd,mm,aa;
+
     RequestQueue requestQueue;
 
     @Override
@@ -45,24 +49,45 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
         txtfechaN = (EditText) findViewById(R.id.edtFechaN);
         txtfechaN.setOnClickListener(this);
         btnIngresar=(Button)findViewById(R.id.btnReg);
+        btnfechaN=(Button)findViewById(R.id.btnFechaN);
         btnIngresar.setOnClickListener(this);
+        btnfechaN.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(R.id.edtFechaN==id){
+        /*if(R.id.edtFechaN==id){
             MostrarFecha();
-        }
+        }*/
         if(id == R.id.btnReg) {
             //RegistarUser("http://192.168.0.12/clinica_service/paciente/create.php");Local
             RegistarUser("https://clinica-service.000webhostapp.com/clinica_service/paciente/create.php"); //Web
+
+
+        }
+        if(R.id.btnFechaN==v.getId()){
+
+            final Calendar calendar =Calendar.getInstance();
+            dd=calendar.get(Calendar.DAY_OF_MONTH);
+            mm=calendar.get(Calendar.MONTH);
+            aa=calendar.get(Calendar.YEAR);
+
+
+            DatePickerDialog datePickerDialog= new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    txtfechaN.setText(year+"-" + (month)+1+ "-"+dayOfMonth);
+                }
+            },aa,mm,dd);
+            datePickerDialog.show();
+
         }
     }
 
 
-    private void MostrarFecha() {
+   /* private void MostrarFecha() {
         DatePickerFragment Fragmento = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -73,7 +98,7 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
         });
 
         Fragmento.show(getSupportFragmentManager(), "datePicker");
-    }
+    }*/
 
     public void RegistarUser(String URL){
 
@@ -109,6 +134,10 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
 
             txtresp.setError("DEBE ESCRIBIR SU RESPUESTA A LA PREGUNTA");
         }
+        else if(txtfechaN.getText().toString().isEmpty()){
+
+            txtresp.setError("DEBE ESCRIBIR SU FECHA DE NACIMIENTO");
+        }
 
         else{
 
@@ -135,7 +164,7 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
                             parametros.put("telefono",txttelefono.getText().toString());
                             parametros.put("pregunta",txtpreg.getText().toString());
                             parametros.put("respuesta",txtresp.getText().toString());
-                            parametros.put("fecha_nac",txtfechaN.getText().toString());
+                            parametros.put("fecha_nacimiento",txtfechaN.getText().toString());
                             return parametros;
                         }
                     };

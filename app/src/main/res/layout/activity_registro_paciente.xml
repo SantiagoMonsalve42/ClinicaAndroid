@@ -66,17 +66,35 @@
         android:ems="10"
         android:hint="Telefono"
         android:inputType="number" />
-
-    <EditText
-        android:id="@+id/edtFechaN"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
-        android:ems="10"
-        android:hint="Fecha de nacimiento"
+        android:orientation="horizontal">
+
+        <EditText
+        android:id="@+id/edtFechaN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="0dp"
+        android:ems="8"
         android:inputType="date" />
+
+        <Button
+            android:id="@+id/btnFechaN"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded_upgrade"
+            android:text="Fecha nacimiento"
+            android:textSize="8sp" />
+
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/edtCorreo"

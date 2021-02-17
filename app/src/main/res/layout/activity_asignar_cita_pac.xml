@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".AsignarCitaPac">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
@@ -25,10 +26,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical">
 
@@ -39,73 +40,68 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <RadioGroup
+                    android:id="@+id/rbtnGEspecial"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/rbtnMGeneral"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"/>
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:text="Medicina general"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/rbtnCardio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Cardiologia"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/rbtnGine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Ginecologia"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton5"
+                        android:id="@+id/rtbtnOdonto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Odontologia"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton6"
+                        android:id="@+id/rbtnHemato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Hematologia"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton7"
+                        android:id="@+id/rbtnDerma"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Dermatologia"
                         android:textSize="20sp" />
 
                     <RadioButton
-                        android:id="@+id/radioButton8"
+                        android:id="@+id/rbtnNeuro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="Neurologia"
                         android:textSize="20sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:textSize="20sp" />
                 </RadioGroup>
             </LinearLayout>
         </ScrollView>
@@ -116,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical">
 
@@ -135,8 +131,8 @@
             android:layout_marginRight="25dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView10"
+            <Button
+                android:id="@+id/btnDate"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -149,8 +145,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/textView11"
+            <Button
+                android:id="@+id/btnTime"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -164,12 +160,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextDateP"
+        <TextView
+            android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -177,8 +173,8 @@
             android:inputType="date"
             android:autofillHints="" />
 
-        <EditText
-            android:id="@+id/editTextTimeP"
+        <TextView
+            android:id="@+id/txtTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -187,13 +183,34 @@
             android:autofillHints="" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonAgendarCitaP"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/button_rounded_confirm"
-        android:text="Agendar cita" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtSelMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Medico:" />
+
+        <Spinner
+            android:id="@+id/spnMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/btnAgendarCitaP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/button_rounded_confirm"
+            android:text="Agendar cita" />
+
+    </LinearLayout>
+
 </LinearLayout>
