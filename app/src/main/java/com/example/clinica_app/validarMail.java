@@ -59,7 +59,7 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
     }
     public void ValidarMail(String mail){
 
-     String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?id="+mail;//WEB
+     String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?idpaciente="+mail;//WEB
      //String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;     Local
      JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
 

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             correo=txtcorreo.getText().toString();
             clave=txtclave.getText().toString();
             if(!correo.isEmpty() && !clave.isEmpty()){
-            ValidarUser("https://clinica-service.000webhostapp.com/clinica_service/login/verificar.php");//Web
+            ValidarUser("http://192.168.0.21/clinica_service/login/verificar.php");//Web
             //   ValidarUser("http://192.168.0.12/clinica_service/login/verificar.php");Local
             }
             else{

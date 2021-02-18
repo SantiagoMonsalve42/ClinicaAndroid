@@ -192,6 +192,9 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onResponse(String response) {
                             Toast.makeText(getApplicationContext(), "SE HA REGISTRADO SATISFACTORIAMENTE", Toast.LENGTH_SHORT).show();
+                            String aux= response.toString();
+
+
                         }
                     }, new Response.ErrorListener() {
                         @Override

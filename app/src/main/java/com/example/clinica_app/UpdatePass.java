@@ -60,7 +60,7 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
         //String URL="http://c192.168.0.12/clinica_service/paciente/updatepass.php";Local
 
         StringRequest stringRequest=
-                new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+                new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "BIEN", Toast.LENGTH_SHORT);
@@ -91,7 +91,7 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
                         Map<String,String> parametros = new HashMap<String,String>();
                         parametros.put("command", "updateLoc");
 
-                        parametros.put("id",id_p);
+                        parametros.put("idpaciente",id_p);
                         parametros.put("pass",txt_pass.getText().toString());
                         return parametros;
                     }
