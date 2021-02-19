@@ -27,7 +27,7 @@ public class MenuPaciente extends AppCompatActivity implements View.OnClickListe
         //concatenación de nombre paciente
         txtNombre=(TextView)findViewById(R.id.txtNombre);
         String nombreP= getIntent().getStringExtra("nombre");
-        txtNombre.setText("Hola "+nombreP+" como vamos?");
+        txtNombre.setText(nombreP);
 
         btnSalir.setOnClickListener(this);
         btnAgendarC.setOnClickListener(this);
