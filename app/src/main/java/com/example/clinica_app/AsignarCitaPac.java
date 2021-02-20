@@ -52,11 +52,16 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
     TextView txtFecha;
     TextView txtTime;
     TextView txtSelM;
+
     RequestQueue requestQueue;
 
     Spinner spnMed;
     ArrayList<String> medicosList = new ArrayList<>();
     ArrayAdapter<String> medicosAdapter;
+
+    Spinner spnCon;
+    ArrayList<String> consulList = new ArrayList<>();
+    ArrayAdapter<String> consulAdapter;
 
     int aa,mm,dd,hh,min; //TIEMPO Y FECHA
 
@@ -81,12 +86,14 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
         rbtnGine=(RadioButton)findViewById(R.id.rbtnGine);
         rbtnOdon=(RadioButton)findViewById(R.id.rtbtnOdonto);
         spnMed=(Spinner)findViewById(R.id.spnMed);
+        spnCon=(Spinner)findViewById(R.id.spnCon);
         btnAgigC.setOnClickListener(this);
         btnfecha.setOnClickListener(this);
         btnhora.setOnClickListener(this);
 
         rbtnMG.setChecked(true);
         MostrarMedico("https://clinica-service.000webhostapp.com/clinica_service/cita/selectMed.php");
+        MostrarConsul("https://clinica-service.000webhostapp.com/clinica_service/cita/selectCon.php");
 
     }
 
@@ -158,6 +165,39 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
         });
         requestQueue.add(jsonObjectRequest);
     }
+
+
+    public void MostrarConsul(String URLC){
+
+        requestQueue=Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLC ,null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONArray jsonArray = null;
+                try {
+                    jsonArray = response.getJSONArray("consultorio");
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        String nombreM=jsonObject.optString("nombre");
+                        consulList.add(nombreM);
+                        consulAdapter= new ArrayAdapter<>(AsignarCitaPac.this, android.R.layout.simple_list_item_1,consulList);
+                        spnCon.setAdapter(consulAdapter);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
     public void AsignarCitaP(String URL){
         String estadoC="Asignada";
 
@@ -191,9 +231,9 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
                         new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+
                             Toast.makeText(getApplicationContext(), "SE HA REGISTRADO SATISFACTORIAMENTE", Toast.LENGTH_SHORT).show();
                             String aux= response.toString();
-
 
                         }
                     }, new Response.ErrorListener() {

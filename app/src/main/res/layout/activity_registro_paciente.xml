@@ -9,165 +9,170 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center"
-        android:text="Registro pacientes"
-        android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/edtNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:text="Registro pacientes"
+                android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/edtApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Apellido"
-        android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/edtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/edtCC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Identificación"
-        android:inputType="number"
-        android:paddingLeft="5dp" />
+            <EditText
+                android:id="@+id/edtApellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Apellido"
+                android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/edtTel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Telefono"
-        android:inputType="number" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edtCC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Identificación"
+                android:inputType="number"
+                android:paddingLeft="5dp" />
 
-        <EditText
-        android:id="@+id/edtFechaN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="0dp"
-        android:ems="8"
-        android:inputType="date" />
+            <EditText
+                android:id="@+id/edtTel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="number" />
 
-        <Button
-            android:id="@+id/btnFechaN"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_rounded_upgrade"
-            android:text="Fecha nacimiento"
-            android:textSize="8sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtFechaN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="0dp"
+                    android:ems="8"
+                    android:inputType="date" />
+
+                <Button
+                    android:id="@+id/btnFechaN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_rounded_upgrade"
+                    android:text="Fecha nacimiento"
+                    android:textSize="8sp" />
 
 
-    </LinearLayout>
+            </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/edtCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Correo"
-        android:inputType="text" />
+            <EditText
+                android:id="@+id/edtCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Correo"
+                android:inputType="text" />
 
-    <EditText
-        android:id="@+id/edtClave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Clave"
-        android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/edtClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Clave"
+                android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/edtPregunta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Pregunta de recuperación"
-        android:inputType="textLongMessage"/>
+            <EditText
+                android:id="@+id/edtPregunta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Pregunta de recuperación"
+                android:inputType="textLongMessage" />
 
-    <EditText
-        android:id="@+id/edtRespuesta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:ems="10"
-        android:hint="Respuesta"
-        android:inputType="textLongMessage"/>
+            <EditText
+                android:id="@+id/edtRespuesta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:hint="Respuesta"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="90dp"
-        android:orientation="vertical">
+                android:inputType="textLongMessage" />
 
-        <Button
-            android:id="@+id/btnReg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/button_rounded"
-            android:text="Registrarse"
-            android:textColor="#FFF"
-            android:textSize="18sp"/>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="90dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_rounded"
+                    android:text="Registrarse"
+                    android:textColor="#FFF"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
