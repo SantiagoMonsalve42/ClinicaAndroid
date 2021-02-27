@@ -1,9 +1,8 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;

@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.paciente;
 
 public class DatosPaciente {
     private String nombre;

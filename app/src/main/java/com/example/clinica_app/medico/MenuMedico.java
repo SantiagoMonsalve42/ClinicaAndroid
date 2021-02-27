@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.medico;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,7 +83,7 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
         if(v.getId()==R.id.buttonSalirM){
             SharedPreferences preferences=getSharedPreferences("datosLogin", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }

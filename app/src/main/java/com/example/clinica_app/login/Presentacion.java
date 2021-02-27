@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,9 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import java.security.Principal;
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.paciente.MenuPaciente;
+import com.example.clinica_app.R;
 
 public class Presentacion extends AppCompatActivity {
 ProgressBar progressBarra;
@@ -26,12 +28,12 @@ ProgressBar progressBarra;
                 SharedPreferences preferences=getSharedPreferences("datosLogin",Context.MODE_PRIVATE);
                 boolean sesion= preferences.getBoolean("sesion",false);
                 if(sesion){
-                    Intent intent= new Intent(getApplicationContext(),MenuPaciente.class);
+                    Intent intent= new Intent(getApplicationContext(), MenuPaciente.class);
                     startActivity(intent);
                     finish();
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
                 }

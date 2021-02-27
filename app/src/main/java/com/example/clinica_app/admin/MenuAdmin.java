@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.R;
 
 public class MenuAdmin extends AppCompatActivity implements View.OnClickListener {
     Button btnSalir;
@@ -24,7 +27,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
         if(v.getId()==R.id.btnSalirA){
             SharedPreferences preferences=getSharedPreferences("datosLogin", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();//Limpiar datos
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }

@@ -1,30 +1,24 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.R;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class validarMail extends AppCompatActivity implements View.OnClickListener{
     EditText txtcorreo;
@@ -59,8 +53,8 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
     }
     public void ValidarMail(String mail){
 
-     String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?idpaciente="+mail;//WEB
-     //String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;     Local
+     //String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?idpaciente="+mail;//WEB
+     String URL="http://192.168.0.21/clinica_service/paciente/read.php?idpaciente="+mail;
      JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
 
 
@@ -68,26 +62,42 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
                 response -> {
                     String ask, mail1;
                     Intent intent = new Intent(getApplicationContext(), checkAsk.class);
-
+                    System.out.println(response.toString());
                     try {
 
-                        ask = response.getString("pregunta");
-                        mail1 = response.getString("correo");
-                        System.out.println(ask);
-                        System.out.println(correo);
-                         Bundle miBundle= new Bundle();
-                        miBundle.putString("ask",ask);
-                        miBundle.putString("mail",mail1);
-                        intent.putExtras(miBundle);
+                            ask = response.getString("pregunta");
+                            mail1 = response.getString("correo");
+                            System.out.println(ask);
+                            System.out.println(correo);
+                            Bundle miBundle = new Bundle();
+                            miBundle.putString("ask", ask);
+                            miBundle.putString("mail", mail1);
+                            intent.putExtras(miBundle);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
 
                     }
+
                     startActivity(intent);
-                }, error -> System.out.println("ERRRRRRROR")
+                }, error -> this.crearalerta()
         );
         requestQueue.add(jsonObjectRequest);
 
     }
+
+public void crearalerta(){
+    AlertDialog.Builder alerta= new AlertDialog.Builder(validarMail.this);
+    alerta.setMessage("El correo no esta mal o no existe en el sistema..")
+            .setCancelable(false)
+            .setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+    AlertDialog titulo= alerta.create();
+    titulo.setTitle("Error al verificar email");
+    titulo.show();
+}
 }

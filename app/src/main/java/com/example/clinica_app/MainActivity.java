@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +20,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.admin.MenuAdmin;
+import com.example.clinica_app.login.RegistroPaciente;
+import com.example.clinica_app.login.validarMail;
+import com.example.clinica_app.medico.MenuMedico;
+import com.example.clinica_app.paciente.DatosPaciente;
+import com.example.clinica_app.paciente.MenuPaciente;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,15 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             correo=txtcorreo.getText().toString();
             clave=txtclave.getText().toString();
             if(!correo.isEmpty() && !clave.isEmpty()){
-            ValidarUser("https://clinica-service.000webhostapp.com/clinica_service/login/verificar.php");//Web
-            //   ValidarUser("http://192.168.0.12/clinica_service/login/verificar.php");Local
+            //ValidarUser("https://clinica-service.000webhostapp.com/clinica_service/login/verificar.php");//Web
+            ValidarUser("http://192.168.0.21/clinica_service/login/verificar.php");
             }
             else{
                 Toast.makeText(MainActivity.this,"No dejes campos vacios",Toast.LENGTH_SHORT).show();
             }
         }
         else if(id==R.id.btnRegisN){
-            Intent intent= new Intent(getApplicationContext(),RegistroPaciente.class);
+            Intent intent= new Intent(getApplicationContext(), RegistroPaciente.class);
             startActivity(intent);
             finish();
         }
@@ -137,47 +142,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     titulo.show();
                     break;
                 case 1:
-                    intent= new Intent(getApplicationContext(),MenuAdmin.class);
+                    intent= new Intent(getApplicationContext(), MenuAdmin.class);
                     GuardarDatos();
                     startActivity(intent);
                     break;
                 case 2:
-                    intent= new Intent(getApplicationContext(),MenuMedico.class);
+                    intent= new Intent(getApplicationContext(), MenuMedico.class);
                     GuardarDatos();
                     startActivity(intent);
                     break;
                 case 3:
-
-
-                    String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/datosSesion.php";
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                            URL, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            JSONArray jsonArray = response.optJSONArray("paciente");
-                            JSONObject jsonObject= null;
-
-                            try {
-
-                               jsonObject= jsonArray.getJSONObject(0);
-                               datPac.setNombre(jsonObject.optString("nombre"));
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    });
-                    requestQueue.add(jsonObjectRequest);
-                    intent= new Intent(getApplicationContext(),MenuPaciente.class);
-                    intent.putExtra(MenuPaciente.nombrePac, datPac.getNombre());
+                    intent= new Intent(getApplicationContext(), MenuPaciente.class);
                     GuardarDatos();
                     startActivity(intent);
                     break;

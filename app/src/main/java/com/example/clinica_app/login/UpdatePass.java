@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,8 +58,8 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
     }
 
     private void updatePass(String id, String pass) {
-        String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/updatepass.php";//WEB
-        //String URL="http://c192.168.0.12/clinica_service/paciente/updatepass.php";Local
+        //String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/updatepass.php";//WEB
+        String URL="http://c192.168.0.21/clinica_service/paciente/updatepass.php";
 
         StringRequest stringRequest=
                 new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {

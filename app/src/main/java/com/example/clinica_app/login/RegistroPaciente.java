@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.R;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -62,8 +63,8 @@ public class RegistroPaciente extends AppCompatActivity implements View.OnClickL
             MostrarFecha();
         }*/
         if(id == R.id.btnReg) {
-            //RegistarUser("http://192.168.0.12/clinica_service/paciente/create.php");Local
-            RegistarUser("https://clinica-service.000webhostapp.com/clinica_service/paciente/create.php"); //Web
+           RegistarUser("http://192.168.0.21/clinica_service/paciente/create.php");
+            //RegistarUser("https://clinica-service.000webhostapp.com/clinica_service/paciente/create.php"); //Web
 
 
         }

@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".validarMail">
+    tools:context=".login.validarMail">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="44dp"
-        android:text="INGRESE SU CORREO:"
-        android:textColor="#000000"
-        android:textSize="18sp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="48dp"
+        android:text="INGRESE SU CORREO"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,9 +23,9 @@
         android:id="@+id/txt_mail_v"
         android:layout_width="304dp"
         android:layout_height="47dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="176dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +35,14 @@
         android:id="@+id/btn_validate"
         android:layout_width="195dp"
         android:layout_height="66dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="120dp"
+        android:background="#2196F3"
         android:text="CAMBIAR CLAVE"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFF8F8"
+        android:textIsSelectable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_mail_v" />
 </androidx.constraintlayout.widget.ConstraintLayout>

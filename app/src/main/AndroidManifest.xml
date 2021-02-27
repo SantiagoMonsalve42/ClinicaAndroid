@@ -13,21 +13,21 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".AsignarCitaPac"></activity>
+        <activity android:name=".paciente.AsignarCitaPac"></activity>
 
-        <activity android:name=".Actualizar_paciente"></activity>
-        <activity android:name=".Actualizar_cita" />
-        <activity android:name=".Agendar_cita" />
+        <activity android:name=".admin.Actualizar_paciente"></activity>
+        <activity android:name=".admin.Actualizar_cita" />
+        <activity android:name=".paciente.Agendar_cita" />
 
-        <activity android:name=".MenuMedico" />
-        <activity android:name=".RegistroPaciente" />
-        <activity android:name=".UpdatePass" />
-        <activity android:name=".checkAsk" />
-        <activity android:name=".validarMail" />
+        <activity android:name=".medico.MenuMedico" />
+        <activity android:name=".login.RegistroPaciente" />
+        <activity android:name=".login.UpdatePass" />
+        <activity android:name=".login.checkAsk" />
+        <activity android:name=".login.validarMail" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".MenuPaciente" />
-        <activity android:name=".MenuAdmin" />
-        <activity android:name=".Presentacion">
+        <activity android:name=".paciente.MenuPaciente" />
+        <activity android:name=".admin.MenuAdmin" />
+        <activity android:name=".login.Presentacion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

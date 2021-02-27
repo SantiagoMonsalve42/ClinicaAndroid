@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.paciente;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.clinica_app.MainActivity;
+import com.example.clinica_app.R;
 
 public class MenuPaciente extends AppCompatActivity implements View.OnClickListener {
     Button btnSalir;
@@ -39,7 +40,7 @@ public class MenuPaciente extends AppCompatActivity implements View.OnClickListe
         if(v.getId()==R.id.btnSalirPa){
             SharedPreferences preferences=getSharedPreferences("datosLogin", Context.MODE_PRIVATE);
             preferences.edit().clear().commit();
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }

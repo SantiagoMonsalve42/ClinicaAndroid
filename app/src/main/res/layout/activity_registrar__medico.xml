@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".Registrar_medico">
+    tools:context=".medico.Registrar_medico">
 
     <EditText
         android:id="@+id/editTextNombreMe"
@@ -89,10 +89,7 @@
             android:text="Especialidad"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="" />
+
 
         <Spinner
             android:id="@+id/spinnerEspecialidadMe"
@@ -115,10 +112,7 @@
             android:text="Estado"
             android:textSize="20sp" />
 
-        <Space
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_weight="" />
+
 
         <Spinner
             android:id="@+id/spinnerEstadoMe"

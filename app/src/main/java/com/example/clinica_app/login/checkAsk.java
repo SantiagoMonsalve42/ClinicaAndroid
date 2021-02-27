@@ -1,4 +1,4 @@
-package com.example.clinica_app;
+package com.example.clinica_app.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.R;
 
 import org.json.JSONException;
 
