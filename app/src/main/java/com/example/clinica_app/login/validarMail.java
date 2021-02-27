@@ -32,9 +32,12 @@ public class validarMail extends AppCompatActivity implements View.OnClickListen
         txtcorreo=(EditText) findViewById(R.id.txt_mail_v);
         btnactualizar=(Button)findViewById(R.id.btn_validate);
         btnactualizar.setOnClickListener(this);
-
+        Intent intent = new Intent(getApplicationContext(), validarMail.class);
         requestQueue = Volley.newRequestQueue(this);
-
+        Bundle miBundle = new Bundle();
+        miBundle.putString("ask", "");
+        miBundle.putString("mail", "");
+        intent.putExtras(miBundle);
 
     }
 

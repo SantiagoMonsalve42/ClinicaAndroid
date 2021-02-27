@@ -21,19 +21,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.clinica_app.MainActivity;
 import com.example.clinica_app.R;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class UpdatePass extends AppCompatActivity implements View.OnClickListener {
     String id_p,pass;
-    EditText txt_pass;
+    EditText txt_pass1,txt_pass2;
     Button update;
     RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_ask);
-        txt_pass=(EditText)findViewById(R.id.txt_pass);
+        txt_pass1=(EditText)findViewById(R.id.txt_pass1);
+        txt_pass2=(EditText)findViewById(R.id.txt_pass2);
         update=(Button)findViewById(R.id.btn_update);
         update.setOnClickListener(this);
         Bundle bundle = getIntent().getExtras();
@@ -45,40 +48,40 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         int id =v.getId();
+
         if(id == R.id.btn_update){
-            if(txt_pass.getText().equals("")){
+            if(txt_pass1.getText().equals("") || txt_pass2.getText().equals("")){
                 Toast.makeText(UpdatePass.this,"No dejes campos vacios..",Toast.LENGTH_SHORT).show();
-            }else{
-                pass=txt_pass.getText().toString();
+            }
+            else{
+                if(txt_pass1.getText().toString().equals(txt_pass2.getText().toString())){
+                pass=txt_pass1.getText().toString();
                 updatePass(id_p,pass);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                startActivity(intent);}
+                else{
+                    Toast.makeText(UpdatePass.this,"Las contraseñas no son iguales..",Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
 
     private void updatePass(String id, String pass) {
         //String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/updatepass.php";//WEB
-        String URL="http://c192.168.0.21/clinica_service/paciente/updatepass.php";
+        String URL="http://192.168.0.21/clinica_service/paciente/updatepass.php";
 
         StringRequest stringRequest=
                 new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), "BIEN", Toast.LENGTH_SHORT);
-                        AlertDialog.Builder alerta= new AlertDialog.Builder(UpdatePass.this);//Mensaje en cuadro de texto en alerta
-                        alerta.setMessage("Contraseña actualizada correctamente")
-                                .setCancelable(false)//Paara salir del aleert pulsando fuera de el
-                                .setPositiveButton("Vale", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.cancel();
-                                    }
-                                });
-                        AlertDialog titulo= alerta.create();
-                        titulo.setTitle("Bien hecho!");
-                        titulo.show();
 
+
+                    public void onResponse(String response) {
+                        System.out.println(response.toString());
+                        if(response.toString().trim().equalsIgnoreCase("1")){
+                            Toast.makeText(UpdatePass.this,"Contraseña actualizada correctamente !!",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(UpdatePass.this,"No se pudo actualizar la contraseña, intente mas tarde..",Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 }, new Response.ErrorListener() {
@@ -94,7 +97,7 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
                         parametros.put("command", "updateLoc");
 
                         parametros.put("idpaciente",id_p);
-                        parametros.put("pass",txt_pass.getText().toString());
+                        parametros.put("pass",txt_pass1.getText().toString());
                         return parametros;
                     }
                 };

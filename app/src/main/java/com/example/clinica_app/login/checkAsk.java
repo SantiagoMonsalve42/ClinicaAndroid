@@ -1,7 +1,9 @@
 package com.example.clinica_app.login;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -50,15 +52,15 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
         if(id == R.id.btn_answer){
             answer=txt_answer.getText().toString();
           ValidarRespuesta(mail,answer);
-
+            System.out.println("email hoy dia es"+mail);
             }
         }
 
 
     private void ValidarRespuesta(String mail,String answer) {
 
-        String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?idpaciente="+mail; //WEB
-       // String URL="http://192.168.0.12/clinica_service/paciente/read.php?id="+mail;//local
+        //String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/read.php?idpaciente="+mail; //WEB
+       String URL="http://192.168.0.21/clinica_service/paciente/read.php?idpaciente="+mail;//local
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(
                 Request.Method.GET, URL, null,
                 response -> {
@@ -78,11 +80,7 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
                             miBundle.putString("id",ids);
                             intent.putExtras(miBundle);
                             startActivity(intent);
-                        }else{
-                            Toast.makeText(checkAsk.this,"El dato ingresado no corresponde a la respuesta esperada..",Toast.LENGTH_SHORT).show();
                         }
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
 
@@ -92,5 +90,19 @@ public class checkAsk extends AppCompatActivity implements View.OnClickListener 
         );
         requestQueue.add(jsonObjectRequest);
 
+    }
+    public void crearalerta(){
+        AlertDialog.Builder alerta= new AlertDialog.Builder(checkAsk.this);
+        alerta.setMessage("La respuesta esta mal, vuelva a intentarlo o comuniquese con un admisntrador..")
+                .setCancelable(false)
+                .setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog titulo= alerta.create();
+        titulo.setTitle("Error al verificar la respuesta");
+        titulo.show();
     }
 }
