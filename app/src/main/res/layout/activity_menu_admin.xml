@@ -9,11 +9,12 @@
 
 
     <SearchView
+        android:id="@+id/txt_buscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="25dp" >
+        android:layout_marginRight="25dp">
 
     </SearchView>
 
@@ -23,6 +24,15 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp" />
+
+    <Button
+        android:id="@+id/btn_buscar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#2196F3"
+        android:text="BUSCAR"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:id="@+id/layout20"
@@ -39,7 +49,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_confirm"
-            android:text="Registrar medico"
+            android:text="MEDICOS"
             android:textSize="19sp" />
 
         <Space
@@ -53,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_upgrade"
-            android:text="Generar reportes"
+            android:text="reportes"
             android:textSize="19sp" />
     </LinearLayout>
 
@@ -72,7 +82,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_delete"
-            android:text="Gestionar usuarios"
+            android:text="PACIENTES"
             android:textSize="19sp" />
 
         <Space
@@ -86,8 +96,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_upgrade"
-            android:text="Generar Graficos"
+            android:text="Graficos"
             android:textSize="19sp" />
+
     </LinearLayout>
 
     <Button

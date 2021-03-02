@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".medico.Registrar_medico">
+    tools:context=".admin.Registrar_medico">
 
     <EditText
         android:id="@+id/editTextNombreMe"

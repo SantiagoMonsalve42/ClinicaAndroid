@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RequestQueue requestQueue;
     String correo;
     String clave;
-    DatosPaciente datPac= new DatosPaciente();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

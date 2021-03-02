@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,55 +28,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MenuMedico extends AppCompatActivity implements View.OnClickListener{
-    ListView lcitas;
-    Button btnSalir;
-    ArrayList<String> citaList = new ArrayList<>();
-    ArrayAdapter<String> citaAdapter;
-    RequestQueue requestQueue;
 
+    Button btnSalir,actcitas;
+    Spinner spcitas;
+    ArrayList<String> citas =new ArrayList<>();
+    ArrayAdapter<String> citasadapter;
+    RequestQueue requestQueue;
+    String email=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("datosLogin",   Context.MODE_PRIVATE);
+        email = prefs.getString("correo", "");
         setContentView(R.layout.activity_menu_medico);
-        requestQueue = Volley.newRequestQueue(this);
-        lcitas = findViewById(R.id.lcita);
-        String url = "//clinica-service@files.000webhost.com/public_html/clinica_service/medico/verCita.php";
+        requestQueue=Volley.newRequestQueue(this);
+        btnSalir=(Button)findViewById(R.id.buttonSalirM);
+        actcitas=(Button)findViewById(R.id.btn_actcitas);
+        actcitas.setOnClickListener(this);
         btnSalir.setOnClickListener(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                JSONArray jsonArray = null;
-                try {
-                    jsonArray = response.getJSONArray("cita");
-                    for (int i = 0; i<jsonArray.length(); i++){
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String fecha = jsonObject.optString("fecha");
-                        citaList.add(fecha);
-                        String hora = jsonObject.optString("hora");
-                        citaList.add(hora);
-                        String nombreCon = jsonObject.optString("nombreCon");
-                        citaList.add(nombreCon);
-                        String nombre = jsonObject.optString("nombre");
-                        citaList.add(nombre);
-                        String apellido = jsonObject.optString("apellido");
-                        citaList.add(apellido);
-                        citaAdapter = new ArrayAdapter<>(MenuMedico.this, android.R.layout.simple_list_item_1, citaList);
-                        citaAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                        lcitas.setAdapter(citaAdapter);
-                    }
-                }catch (JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        spcitas=(Spinner)findViewById(R.id.spinner_citas);
 
-            }
-        }
 
-        );
-        requestQueue.add(jsonObjectRequest);
+        mostrarCitas();
+
     }
 
     @Override
@@ -87,6 +62,45 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
             startActivity(intent);
             finish();
         }
+        if(v.getId()==R.id.btn_actcitas){
+           mostrarCitas();
+        }
     }
+    public void mostrarCitas(){
 
+        String url ="http://192.168.0.21/clinica_service/cita/read.php?idmedico="+email;
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+             JSONArray jsonArray=null;
+                try {
+                    jsonArray = response.getJSONArray("cita");
+                    for(int i=0; i<jsonArray.length();i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        int id= jsonObject.optInt("idcita");
+                        String nombre = jsonObject.optString("nombre");
+                        String apellido = jsonObject.optString("apellido");
+                        String fecha = jsonObject.optString("fecha");
+                        String hora = jsonObject.optString("hora");
+                        String resul=nombre+" "+fecha+" "+hora;
+                        System.out.println(resul);
+                        citas.add(resul);
+                        citasadapter = new ArrayAdapter<>(MenuMedico.this,
+                                android.R.layout.simple_spinner_item,citas);
+                        citasadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spcitas.setAdapter(citasadapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
 }

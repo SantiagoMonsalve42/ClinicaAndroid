@@ -1,4 +1,4 @@
-package com.example.clinica_app.medico;
+package com.example.clinica_app.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -12,13 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".paciente.AsignarCitaPac"></activity>
-
-        <activity android:name=".admin.Actualizar_paciente"></activity>
+        <activity android:name=".admin.Admin_Paciente"></activity>
+        <activity android:name=".admin.Admin_Medicos" />
+        <activity android:name=".paciente.AsignarCitaPac" />
+        <activity android:name=".admin.Actualizar_paciente" />
         <activity android:name=".admin.Actualizar_cita" />
         <activity android:name=".paciente.Agendar_cita" />
-
         <activity android:name=".medico.MenuMedico" />
         <activity android:name=".login.RegistroPaciente" />
         <activity android:name=".login.UpdatePass" />
