@@ -1,16 +1,19 @@
 package com.example.clinica_app.medico;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,16 +23,22 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.clinica_app.MainActivity;
 import com.example.clinica_app.R;
+import com.example.clinica_app.login.UpdatePass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MenuMedico extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnSalir,actcitas;
+    Button btnSalir,actcitas,atenderc,perfil;
     Spinner spcitas;
     ArrayList<String> citas =new ArrayList<>();
     ArrayAdapter<String> citasadapter;
@@ -43,7 +52,11 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_menu_medico);
         requestQueue=Volley.newRequestQueue(this);
         btnSalir=(Button)findViewById(R.id.buttonSalirM);
+        perfil=(Button)findViewById(R.id.btn_perfilM);
         actcitas=(Button)findViewById(R.id.btn_actcitas);
+        atenderc=(Button)findViewById(R.id.btn_atender);
+        perfil.setOnClickListener(this);
+        atenderc.setOnClickListener(this);
         actcitas.setOnClickListener(this);
         btnSalir.setOnClickListener(this);
         spcitas=(Spinner)findViewById(R.id.spinner_citas);
@@ -64,10 +77,31 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
         }
         if(v.getId()==R.id.btn_actcitas){
            mostrarCitas();
+            Toast.makeText(MenuMedico.this,"Citas diarias actualizadas correctamente..",Toast.LENGTH_SHORT).show();
+        }
+        if((v.getId()==R.id.btn_perfilM)){
+            Intent intent = new Intent(getApplicationContext(), perfilMedico.class);
+            startActivity(intent);
+        }
+        if(v.getId()==R.id.btn_atender){
+            String horaux = spcitas. getSelectedItem(). toString();
+            if(validarHora(horaux)){
+
+            }else{
+                System.out.println(horaux);
+                Toast.makeText(MenuMedico.this,"Recuerde que solo puede atender citas 10 minutos antes de la hora estipulada..",Toast.LENGTH_SHORT).show();
+            }
         }
     }
-    public void mostrarCitas(){
 
+    public boolean validarHora(String fecha){
+
+        return false;
+    }
+
+    public void mostrarCitas(){
+        spcitas.setAdapter(null);
+        citas.clear();
         String url ="http://192.168.0.21/clinica_service/cita/read.php?idmedico="+email;
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -82,9 +116,7 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
                         String apellido = jsonObject.optString("apellido");
                         String fecha = jsonObject.optString("fecha");
                         String hora = jsonObject.optString("hora");
-                        String resul=nombre+" "+fecha+" "+hora;
-                        System.out.println(resul);
-                        citas.add(resul);
+                        citas.add(hora);
                         citasadapter = new ArrayAdapter<>(MenuMedico.this,
                                 android.R.layout.simple_spinner_item,citas);
                         citasadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

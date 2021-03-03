@@ -39,7 +39,7 @@
         android:layout_marginTop="25dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_atender"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
@@ -64,14 +64,14 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/buttonActualDatosM"
+        android:id="@+id/btn_perfilM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="90dp"
         android:background="@drawable/button_rounded_upgrade"
-        android:text="Actualizar datos"
+        android:text="PERFIL"
         android:textColor="#000000"
         android:textSize="18sp" />
 

@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.Admin_Paciente"></activity>
+        <activity android:name=".medico.perfilMedico"></activity>
+        <activity android:name=".medico.atenderCita" />
+        <activity android:name=".admin.Admin_Paciente" />
         <activity android:name=".admin.Admin_Medicos" />
         <activity android:name=".paciente.AsignarCitaPac" />
         <activity android:name=".admin.Actualizar_paciente" />
