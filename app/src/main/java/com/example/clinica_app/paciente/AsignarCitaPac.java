@@ -91,8 +91,8 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
         btnhora.setOnClickListener(this);
 
         rbtnMG.setChecked(true);
-        MostrarMedico("https://clinica-service.000webhostapp.com/clinica_service/cita/selectMed.php");
-        MostrarConsul("https://clinica-service.000webhostapp.com/clinica_service/cita/selectCon.php");
+        MostrarMedico("https://192.168.0.21/clinica_service/cita/selectMed.php");
+        MostrarConsul("https://192.168.0.21/clinica_service/cita/selectCon.php");
 
     }
 
@@ -100,7 +100,7 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(R.id.btnAgendarCitaP==v.getId()){
 
-            AsignarCitaP("https://clinica-service.000webhostapp.com/clinica_service/cita/create.php");
+            AsignarCitaP("https://192.168.0.21/clinica_service/cita/create.php");
         }
         if(R.id.btnDate==v.getId()){
 

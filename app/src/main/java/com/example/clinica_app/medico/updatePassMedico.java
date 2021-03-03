@@ -1,10 +1,10 @@
-package com.example.clinica_app.login;
+package com.example.clinica_app.medico;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,48 +20,47 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.clinica_app.MainActivity;
 import com.example.clinica_app.R;
-
-import org.w3c.dom.ls.LSOutput;
+import com.example.clinica_app.login.UpdatePass;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdatePass extends AppCompatActivity implements View.OnClickListener {
-    String id_p,pass;
-    EditText txt_pass1,txt_pass2;
-    Button update;
+public class updatePassMedico extends AppCompatActivity implements View.OnClickListener {
+    EditText txt_c1,txt_c2;
+    Button updatePM;
     RequestQueue requestQueue;
+    String pass=null,email=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_ask);
-        txt_pass1=(EditText)findViewById(R.id.txt_pass1);
-        txt_pass2=(EditText)findViewById(R.id.txt_pass2);
-        update=(Button)findViewById(R.id.btn_update);
-        update.setOnClickListener(this);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            id_p = bundle.getString("id");
-        }
+        setContentView(R.layout.activity_update_pass_medico);
+        requestQueue= Volley.newRequestQueue(this);
+        txt_c1=(EditText)findViewById(R.id.txt_passm1);
+        txt_c2=(EditText)findViewById(R.id.txt_passm2);
+        updatePM=(Button)findViewById(R.id.btn_updatepassM);
+        SharedPreferences prefs = getSharedPreferences("datosLogin",   Context.MODE_PRIVATE);
+        email = prefs.getString("correo", "");
+        updatePM.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int id =v.getId();
 
-        if(id == R.id.btn_update){
-            if(txt_pass1.getText().equals("") || txt_pass2.getText().equals("")){
-                Toast.makeText(UpdatePass.this,"No dejes campos vacios..",Toast.LENGTH_SHORT).show();
+        if(id == R.id.btn_updatepassM){
+            if(txt_c1.getText().toString().isEmpty() || txt_c2.getText().toString().isEmpty()){
+                Toast.makeText(this,"No dejes campos vacios..",Toast.LENGTH_SHORT).show();
             }
             else{
-                if(txt_pass1.getText().toString().equals(txt_pass2.getText().toString())){
-                pass=txt_pass1.getText().toString();
-                updatePass(id_p,pass);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                if(txt_c1.getText().toString().equals(txt_c2.getText().toString())){
+                    pass=txt_c1.getText().toString();
+                    updatePass(email,pass);
+                    Toast.makeText(this,"Contraseña actualizada correctamente..",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), perfilMedico.class);
+                    startActivity(intent);
                 }
                 else{
-                    Toast.makeText(UpdatePass.this,"Las contraseñas no son iguales..",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Las contraseñas no son iguales..",Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -69,7 +68,7 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
 
     private void updatePass(String id, String pass) {
         //String URL="https://clinica-service.000webhostapp.com/clinica_service/paciente/updatepass.php";//WEB
-        String URL="http://192.168.0.21/clinica_service/paciente/updatepass.php";
+        String URL="http://192.168.0.21/clinica_service/medico/updatepass.php";
 
         StringRequest stringRequest=
                 new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -79,9 +78,9 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
                     public void onResponse(String response) {
                         System.out.println(response.toString());
                         if(response.toString().trim().equalsIgnoreCase("1")){
-                            Toast.makeText(UpdatePass.this,"Contraseña actualizada correctamente !!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(updatePassMedico.this,"Contraseña actualizada correctamente !!",Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(UpdatePass.this,"No se pudo actualizar la contraseña, intente mas tarde..",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(updatePassMedico.this,"No se pudo actualizar la contraseña, intente mas tarde..",Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -97,8 +96,8 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
                         Map<String,String> parametros = new HashMap<String,String>();
                         parametros.put("command", "updateLoc");
 
-                        parametros.put("idpaciente",id_p);
-                        parametros.put("pass",txt_pass1.getText().toString());
+                        parametros.put("idmedico",email);
+                        parametros.put("pass",txt_c1.getText().toString());
                         return parametros;
                     }
                 };
@@ -106,4 +105,4 @@ public class UpdatePass extends AppCompatActivity implements View.OnClickListene
         requestQueue.add(stringRequest);
 
     }
-    }
+}

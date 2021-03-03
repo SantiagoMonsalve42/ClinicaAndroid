@@ -3,9 +3,12 @@ package com.example.clinica_app.medico;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,16 +18,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.clinica_app.MainActivity;
 import com.example.clinica_app.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class perfilMedico extends AppCompatActivity {
+public class perfilMedico extends AppCompatActivity implements View.OnClickListener {
     TextView nombretxt,fechatxt,correotxt,preguntatxt;
+    Button updatePassM;
     RequestQueue requestQueue;
     String email=null;
     @Override
@@ -36,11 +42,20 @@ public class perfilMedico extends AppCompatActivity {
         fechatxt=(TextView)findViewById(R.id.txt_fechanacmedico);
         correotxt=(TextView)findViewById(R.id.txt_correomedico);
         preguntatxt=(TextView)findViewById(R.id.txt_preguntamedico);
+        updatePassM=(Button) findViewById(R.id.btn_actclavemedico);
         SharedPreferences prefs = getSharedPreferences("datosLogin",   Context.MODE_PRIVATE);
         email = prefs.getString("correo", "");
         mostrarDatos();
+        updatePassM.setOnClickListener(this);
     }
-
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.btn_actclavemedico){
+            Intent intent = new Intent(getApplicationContext(), updatePassMedico.class);
+            startActivity(intent);
+            finish();
+        }
+    }
     public void mostrarDatos(){
 
         String url ="http://192.168.0.21/clinica_service/medico/read.php?idmedico="+email;
@@ -77,4 +92,6 @@ public class perfilMedico extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
+
+
 }

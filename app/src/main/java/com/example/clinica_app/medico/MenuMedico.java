@@ -34,11 +34,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class MenuMedico extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnSalir,actcitas,atenderc,perfil;
+    Button btnSalir,actcitas,atenderc,perfil,historial;
     Spinner spcitas;
     ArrayList<String> citas =new ArrayList<>();
     ArrayAdapter<String> citasadapter;
@@ -55,10 +58,12 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
         perfil=(Button)findViewById(R.id.btn_perfilM);
         actcitas=(Button)findViewById(R.id.btn_actcitas);
         atenderc=(Button)findViewById(R.id.btn_atender);
+        historial=(Button)findViewById(R.id.btn_hisotoriaCitasM);
         perfil.setOnClickListener(this);
         atenderc.setOnClickListener(this);
         actcitas.setOnClickListener(this);
         btnSalir.setOnClickListener(this);
+        historial.setOnClickListener(this);
         spcitas=(Spinner)findViewById(R.id.spinner_citas);
 
 
@@ -79,23 +84,64 @@ public class MenuMedico extends AppCompatActivity implements View.OnClickListene
            mostrarCitas();
             Toast.makeText(MenuMedico.this,"Citas diarias actualizadas correctamente..",Toast.LENGTH_SHORT).show();
         }
+        if(v.getId()==R.id.btn_hisotoriaCitasM){
+            Intent intent = new Intent(getApplicationContext(), historialMedico.class);
+            startActivity(intent);
+        }
         if((v.getId()==R.id.btn_perfilM)){
             Intent intent = new Intent(getApplicationContext(), perfilMedico.class);
             startActivity(intent);
         }
         if(v.getId()==R.id.btn_atender){
-            String horaux = spcitas. getSelectedItem(). toString();
-            if(validarHora(horaux)){
+            try{
 
+
+            if (spcitas.getSelectedItem()!=""){
+                if(spcitas.getSelectedItem().toString() != null) {
+
+
+                    String horaux = spcitas.getSelectedItem().toString();
+
+                    if (validarHora(horaux)) {
+
+                        Intent intent = new Intent(getApplicationContext(), atenderCita.class);
+                        intent.putExtra("hora",horaux);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MenuMedico.this, "Recuerde que solo puede atender citas en la hora estipulada..", Toast.LENGTH_SHORT).show();
+                    }
+                }
+              //Si el spinner no tiene nada seleccionado
             }else{
-                System.out.println(horaux);
-                Toast.makeText(MenuMedico.this,"Recuerde que solo puede atender citas 10 minutos antes de la hora estipulada..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "No tiene citas pendientes para el dia de hoy..", Toast.LENGTH_LONG).show();
+            }
+            }catch(Exception e){
+                Toast.makeText(getApplicationContext(), "No tiene citas pendientes para el dia de hoy..", Toast.LENGTH_LONG).show();
             }
         }
     }
 
     public boolean validarHora(String fecha){
-
+        //fecha actual del sistema
+        Calendar calendario = new GregorianCalendar();
+        int horaA, minutosA,horaD=0,minutosD=0;
+        horaA =calendario.get(Calendar.HOUR_OF_DAY);
+        minutosA = calendario.get(Calendar.MINUTE);
+        //fecha dada por las citas pendientes
+        DateFormat inFormat = new SimpleDateFormat( "HH:mm:ss", Locale.UK);
+        Date date = null;
+        try {
+            date = inFormat.parse(fecha);
+            horaD=date.getHours();
+            minutosD=date.getMinutes();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("hora actual "+horaA + minutosA);
+        System.out.println("hora cita"+horaD + minutosD);
+        if(horaA == horaD && minutosD >= minutosA){
+            return true;
+        }else
         return false;
     }
 

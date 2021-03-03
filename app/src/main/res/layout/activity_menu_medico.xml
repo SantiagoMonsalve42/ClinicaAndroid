@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
+    android:background="#595252"
     android:orientation="vertical"
     tools:context=".medico.MenuMedico">
+
 
     <TextView
         android:id="@+id/textView6"
@@ -15,10 +16,10 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="25dp"
-        android:background="#FFFFFF"
+        android:background="#595252"
         android:gravity="center"
         android:text="Citas pendientes"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
     <Button
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/button_rounded_upgrade"
+        android:background="@drawable/button_rounded"
         android:clickable="false"
         android:text="ACTUALIZAR CITAS"
         android:textColor="#000000"
@@ -52,13 +53,13 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/buttonHistorialCitasM"
+        android:id="@+id/btn_hisotoriaCitasM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="60dp"
         android:layout_marginRight="90dp"
-        android:background="@drawable/button_rounded_confirm"
+        android:background="@drawable/button_rounded"
         android:text="Historial de citas"
         android:textColor="#000000"
         android:textSize="18sp" />
@@ -70,7 +71,7 @@
         android:layout_marginLeft="90dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="90dp"
-        android:background="@drawable/button_rounded_upgrade"
+        android:background="@drawable/button_rounded"
         android:text="PERFIL"
         android:textColor="#000000"
         android:textSize="18sp" />
