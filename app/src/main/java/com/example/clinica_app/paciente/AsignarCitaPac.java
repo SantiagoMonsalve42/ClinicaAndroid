@@ -115,6 +115,17 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
                 mostrarIdMed(spnMed.getSelectedItem().toString());
                 mostrarIdPaciente();
                 mostrarIdConsult(spnCon.getSelectedItem().toString());
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("ESTAN LLEGANDO:");
+                System.out.println(txtFecha.getText().toString());
+                System.out.println(spnHoras.getSelectedItem().toString());
+                System.out.println(txtidmed.getText().toString());
+                System.out.println(txtidpac.getText().toString());
+                System.out.println(txtidespec.getText().toString());
                 AsignarCitaP("http://192.168.0.21/clinica_service/cita/create.php");
             }
         }
@@ -308,6 +319,8 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
                         @Override
                         protected Map<String,String> getParams() throws AuthFailureError {
                             Map<String,String> parametros= new HashMap<String, String>();
+
+
                             parametros.put("fecha",txtFecha.getText().toString());//ya
                             parametros.put("hora",spnHoras.getSelectedItem().toString());//ya
                             parametros.put("medico_idmedico",txtidmed.getText().toString());
