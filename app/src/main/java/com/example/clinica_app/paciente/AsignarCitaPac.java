@@ -1,11 +1,17 @@
 package com.example.clinica_app.paciente;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,13 +30,21 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.clinica_app.R;
+import com.example.clinica_app.login.UpdatePass;
+import com.example.clinica_app.medico.MenuMedico;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,30 +52,21 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
     Button btnAgigC;
     Button btnfecha;
     Button btnhora;
-
-    RadioButton rbtnMG;
-    RadioButton rbtnCard;
-    RadioButton rbtnHema;
-    RadioButton rbtnDerm;
-    RadioButton rbtnNeuro;
-    RadioButton rbtnGine;
-    RadioButton rbtnOdon;
-
-    RadioButton rbtnOp;
+    String email=null;
     TextView txtFecha;
-    TextView txtTime;
+    TextView txtidespec,txtidmed,txtidpac;
     TextView txtSelM;
 
     RequestQueue requestQueue;
 
-    Spinner spnMed;
+    Spinner spnMed,spnHoras;
     ArrayList<String> medicosList = new ArrayList<>();
     ArrayAdapter<String> medicosAdapter;
-
+    ArrayAdapter<String> horasAdapter;
     Spinner spnCon;
     ArrayList<String> consulList = new ArrayList<>();
     ArrayAdapter<String> consulAdapter;
-
+    String[] horas = {"10:00:00","11:00:00","12:00:00","13:00:00","14:00:00","15:00:00","16:00:00","17:00:00","18:00:00","19:00:00"};
     int aa,mm,dd,hh,min; //TIEMPO Y FECHA
 
 
@@ -70,37 +75,59 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignar_cita_pac);
         txtFecha=(TextView)findViewById(R.id.txtDate);
-        txtTime=(TextView)findViewById(R.id.txtTime);
+
         txtSelM= (TextView) findViewById(R.id.txtSelMed);
 
         btnAgigC= (Button)findViewById(R.id.btnAgendarCitaP);
         btnfecha= (Button)findViewById(R.id.btnDate);
-        btnhora= (Button)findViewById(R.id.btnTime);
+        horasAdapter= new ArrayAdapter<>(AsignarCitaPac.this, android.R.layout.simple_list_item_1,horas);
 
-        rbtnMG=(RadioButton)findViewById(R.id.rbtnMGeneral);
-        rbtnCard=(RadioButton)findViewById(R.id.rbtnCardio);
-        rbtnHema=(RadioButton)findViewById(R.id.rbtnHemato);
-        rbtnDerm=(RadioButton)findViewById(R.id.rbtnDerma);
-        rbtnNeuro=(RadioButton)findViewById(R.id.rbtnNeuro);
-        rbtnGine=(RadioButton)findViewById(R.id.rbtnGine);
-        rbtnOdon=(RadioButton)findViewById(R.id.rtbtnOdonto);
         spnMed=(Spinner)findViewById(R.id.spnMed);
         spnCon=(Spinner)findViewById(R.id.spnCon);
+        spnHoras=(Spinner)findViewById(R.id.spiner_hora);
         btnAgigC.setOnClickListener(this);
         btnfecha.setOnClickListener(this);
-        btnhora.setOnClickListener(this);
 
-        rbtnMG.setChecked(true);
-        MostrarMedico("https://192.168.0.21/clinica_service/cita/selectMed.php");
-        MostrarConsul("https://192.168.0.21/clinica_service/cita/selectCon.php");
+        txtidespec=(TextView)findViewById(R.id.txt_idespec);
+        txtidmed=(TextView)findViewById(R.id.txt_idmed);
+        txtidpac=(TextView)findViewById(R.id.txt_idpac);
+
+        SharedPreferences prefs = getSharedPreferences("datosLogin",   Context.MODE_PRIVATE);
+        email = prefs.getString("correo", "");
+
+        spnHoras.setAdapter(horasAdapter);
+
+        MostrarEspecialidad("http://192.168.0.21/clinica_service/especialidad/selectEspe.php");
+        MostrarConsul("http://192.168.0.21/clinica_service/cita/selectCon.php");
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
         if(R.id.btnAgendarCitaP==v.getId()){
-
-            AsignarCitaP("https://192.168.0.21/clinica_service/cita/create.php");
+            if( txtFecha.getText().toString().isEmpty() ){
+                Toast.makeText(getApplicationContext(), "No deje ningún campo vacio", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                String sDate1=txtFecha.getText().toString();
+                int actd=0;
+                mostrarIdMed(spnMed.getSelectedItem().toString());
+                mostrarIdPaciente();
+                mostrarIdConsult(spnCon.getSelectedItem().toString());
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("ESTAN LLEGANDO:");
+                System.out.println(txtFecha.getText().toString());
+                System.out.println(spnHoras.getSelectedItem().toString());
+                System.out.println(txtidmed.getText().toString());
+                System.out.println(txtidpac.getText().toString());
+                System.out.println(txtidespec.getText().toString());
+                AsignarCitaP("http://192.168.0.21/clinica_service/cita/create.php");
+            }
         }
         if(R.id.btnDate==v.getId()){
 
@@ -113,29 +140,18 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
             DatePickerDialog datePickerDialog= new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    txtFecha.setText(dayOfMonth+"-" + (month)+1+ "-"+year);
+                    month++;
+                    txtFecha.setText(year+"-" + month + "-"+dayOfMonth);
                 }
             },aa,mm,dd);
             datePickerDialog.show();
 
         }
-        if(R.id.btnTime==v.getId()){
-            final Calendar calendar =Calendar.getInstance();
-            hh=calendar.get(Calendar.HOUR_OF_DAY);
-            min=calendar.get(Calendar.MINUTE);
 
-            TimePickerDialog timePickerDialog= new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    txtTime.setText(hourOfDay+":"+minute);
-                }
-            },hh,min,false);
-            timePickerDialog.show();
-        }
 
     }
 
-    public void MostrarMedico(String URLM){
+    public void MostrarEspecialidad(String URLM){
 
         requestQueue=Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLM, null, new Response.Listener<JSONObject>() {
@@ -143,10 +159,11 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
             public void onResponse(JSONObject response) {
                 JSONArray jsonArray = null;
                 try {
-                    jsonArray = response.getJSONArray("medico");
+                    jsonArray = response.getJSONArray("especialidad");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         String nombreM=jsonObject.optString("nombre");
+
                         medicosList.add(nombreM);
                         medicosAdapter= new ArrayAdapter<>(AsignarCitaPac.this, android.R.layout.simple_list_item_1,medicosList);
                         spnMed.setAdapter(medicosAdapter);
@@ -195,44 +212,102 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
         });
         requestQueue.add(jsonObjectRequest);
     }
+    public void mostrarIdMed(String nombre){
+
+        String url ="http://192.168.0.21/clinica_service/especialidad/selectId.php?nombre="+nombre;
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                JSONArray jsonArray=null;
+                try {
+                    jsonArray = response.getJSONArray("especialidad");
+                    for(int i=0; i<jsonArray.length();i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String idmedico = jsonObject.optString("idmedico");
+                        txtidmed.setText(idmedico);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+    public void mostrarIdConsult(String nombre){
+
+        String url ="http://192.168.0.21/clinica_service/consultorio/readByName.php?name="+nombre;
+        StringRequest stringRequest=
+                new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
 
 
+                    public void onResponse(String response) {
+                        String aux=response.trim();
+                        txtidespec.setText(aux);
+
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    public void mostrarIdPaciente(){
+
+        String url ="http://192.168.0.21/clinica_service/paciente/readId.php?mail="+email;
+        StringRequest stringRequest=
+                new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+
+
+                    public void onResponse(String response) {
+                          String aux=response.trim();
+                          txtidpac.setText(aux);
+
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
     public void AsignarCitaP(String URL){
-        String estadoC="Asignada";
 
-        if( txtFecha.getText().toString().isEmpty() || txtTime.getText().toString().isEmpty() ){
-            Toast.makeText(getApplicationContext(), "No deje ningún campo vacio", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            String espe="";
-            if(rbtnMG.isChecked())
-            {
-                espe="Medicina General";
-            }
-            else if(rbtnCard.isChecked()){
-                espe="Cardiología";
-            }
-            else if(rbtnDerm.isChecked()){
-                espe="Dermatología";
-            }
-            else if(rbtnHema.isChecked()){
-                espe="Hematología";
-            }
-            else if(rbtnGine.isChecked()){
-                espe="Ginecología";
-            }
-            else if(rbtnOdon.isChecked()){
-                espe="Odontología";
-            }
 
-            String finalEspe = espe;
+
             StringRequest stringRequest=
                         new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            String aux= response.toString().trim();
+                           int op=Integer.parseInt(aux);
+                           if(op == 1){
+                               Toast.makeText(AsignarCitaPac.this,"Cita creada correctamente..",Toast.LENGTH_SHORT).show();
+                               Intent intent = new Intent(getApplicationContext(), MenuPaciente.class);
+                               startActivity(intent);
 
-                            Toast.makeText(getApplicationContext(), "SE HA REGISTRADO SATISFACTORIAMENTE", Toast.LENGTH_SHORT).show();
-                            String aux= response.toString();
+                           }else{
+                               Toast.makeText(AsignarCitaPac.this,"Error al crear la cita..",Toast.LENGTH_SHORT).show();
+                               Intent intent = new Intent(getApplicationContext(), MenuPaciente.class);
+                               startActivity(intent);
+                           }
 
                         }
                     }, new Response.ErrorListener() {
@@ -244,13 +319,14 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
                         @Override
                         protected Map<String,String> getParams() throws AuthFailureError {
                             Map<String,String> parametros= new HashMap<String, String>();
-                            parametros.put("fecha",txtFecha.getText().toString());
-                            parametros.put("hora",txtTime.getText().toString());
-                            parametros.put("medico_idmedico",txtSelM.getText().toString());
-                            parametros.put("paciente_idpaciente",txtSelM.getText().toString());
-                            parametros.put("consultorio_idconsultorio",txtSelM.getText().toString());
-                            parametros.put("especialidad", finalEspe);
-                            parametros.put("estado",estadoC);
+
+
+                            parametros.put("fecha",txtFecha.getText().toString());//ya
+                            parametros.put("hora",spnHoras.getSelectedItem().toString());//ya
+                            parametros.put("medico_idmedico",txtidmed.getText().toString());
+                            parametros.put("paciente_idpaciente",txtidpac.getText().toString());
+                            parametros.put("consultorio_idconsultorio",txtidespec.getText().toString());
+                            parametros.put("estado","1");//ya
 
 
                             return parametros;
@@ -260,7 +336,7 @@ public class AsignarCitaPac extends AppCompatActivity implements View.OnClickLis
             requestQueue.add(stringRequest);
 
 
-        }
+
 
     }
 

@@ -27,90 +27,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:orientation="vertical">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RadioGroup
-                    android:id="@+id/rbtnGEspecial"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <RadioButton
-                        android:id="@+id/rbtnMGeneral"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Medicina general"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbtnCardio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Cardiologia"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbtnGine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Ginecologia"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rtbtnOdonto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Odontologia"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbtnHemato"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Hematologia"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbtnDerma"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Dermatologia"
-                        android:textSize="20sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbtnNeuro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Neurologia"
-                        android:textSize="20sp" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="126dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
@@ -133,8 +50,8 @@
 
             <Button
                 android:id="@+id/btnDate"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Fecha"
@@ -145,15 +62,22 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/btnTime"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Hora"
-                android:textSize="20sp" />
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="date" />
+
         </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spiner_hora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -162,26 +86,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="date" />
-
-        <TextView
-            android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="time" />
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
 
     <LinearLayout
@@ -196,8 +101,8 @@
             android:id="@+id/txtSelMed"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:text="Medico:" />
+            android:text="Especialidad:"
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spnMed"
@@ -239,5 +144,20 @@
         android:layout_marginRight="80dp"
         android:background="@drawable/button_rounded_confirm"
         android:text="Agendar cita" />
+
+    <TextView
+        android:id="@+id/txt_idpac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txt_idmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txt_idespec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
