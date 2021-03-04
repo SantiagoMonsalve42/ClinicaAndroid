@@ -68,7 +68,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
         if (v.getId() == R.id.btn_buscar) {
             filtroMe.setAdapter(null);
             datosMe.clear();
-            String url = "http://192.168.0.21/clinica_service/medico/filtrarMedico.php";
+            String url = "http://192.168.0.21/clinica_service/medico/filtrarMedico.php?filtrome="+editBuscar.getText().toString();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -82,7 +82,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
                             String apellido = jsonObject.optString("apellido");
                             String correo = jsonObject.optString("correo");
                             String tarjeta = jsonObject.optString("tarjetaProfesional");
-                            String mostrar = id + ". " + nombre + "  " + apellido + "\n " + "Correo: " + correo + "    Tarjeta:" + tarjeta;
+                            String mostrar = id + ". " + nombre + "  " + apellido + "\n " + "Correo: " + correo + "\n    Tarjeta:" + tarjeta;
                             datosMe.add(mostrar);
                             medicoadapter = new ArrayAdapter<>(MenuAdmin.this, android.R.layout.simple_list_item_1, datosMe);
                             medicoadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
