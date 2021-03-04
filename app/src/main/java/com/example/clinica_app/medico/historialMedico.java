@@ -74,7 +74,7 @@ public class historialMedico extends AppCompatActivity implements View.OnClickLi
                             String nombre = jsonObject.optString("nombre");
                             String fecha = jsonObject.optString("fecha");
                             String estado = jsonObject.optString("estado");
-                            String mostrar=id+". "+hora+ "  "+ fecha+"\n "+"Consultorio: "+nombre+"    Estado: finalizado \n";
+                            String mostrar=id+". "+nombre+ "  "+ fecha+"\n "+"Consultorio: "+nombre+"    Estado: finalizado \n";
 
                              citas.add(mostrar);
                             citasadapter = new ArrayAdapter<>(historialMedico.this,

@@ -7,32 +7,41 @@
     android:orientation="vertical"
     tools:context=".admin.MenuAdmin">
 
-
-    <SearchView
-        android:id="@+id/txt_buscar"
+    <LinearLayout
+        android:id="@+id/layout47"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="25dp">
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/editTextBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nombre" />
 
-    </SearchView>
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_rounded"
+            android:text="BUSCAR"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
     <ListView
+        android:id="@+id/lista_filtroMe"
         android:layout_width="match_parent"
-        android:layout_height="246dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp" />
-
-    <Button
-        android:id="@+id/btn_buscar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#2196F3"
-        android:text="BUSCAR"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:layout_marginRight="25dp"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
         android:id="@+id/layout20"
